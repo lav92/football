@@ -1,5 +1,11 @@
 from django.shortcuts import render
 
+from news.models import News
+
 
 def main_page(request):
-    return render(request, 'news/index.html')
+    data = {
+        'title': 'Main Page',
+        'news': News.objects.all(),
+    }
+    return render(request, 'news/index.html', context=data)
