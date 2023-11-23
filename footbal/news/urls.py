@@ -1,7 +1,8 @@
 from django.urls import path, include
 
-from news.views import main_page
+from news.views import HomePage, single_news
 
 urlpatterns = [
-    path('', main_page, name='main-page'),
+    path('', HomePage.as_view(), name='main-page'),
+    path('news/<slug:news_slug>/', single_news, name='single')
 ]

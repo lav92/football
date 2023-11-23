@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class News(models.Model):
@@ -8,3 +9,6 @@ class News(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     photo = models.ImageField(blank=True, upload_to='photos/%Y/%m/%d/')
     views = models.IntegerField(default=0)
+
+    def get_absolute_url(self):
+        return reverse('single', kwargs={'news_slug': self.slug})

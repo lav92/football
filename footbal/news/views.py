@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from django.views.generic import ListView
 
 from news.models import News
 
 
-def main_page(request):
-    data = {
+class HomePage(ListView):
+    model = News
+    template_name = 'news/index.html'
+    context_object_name = 'news'
+    extra_context = {
         'title': 'Main Page',
-        'news': News.objects.all(),
     }
-    return render(request, 'news/index.html', context=data)
+
+def single_news(request, news_slug):
+    return HttpResponse('single post')
