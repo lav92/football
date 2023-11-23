@@ -11,6 +11,9 @@ class News(models.Model):
     views = models.IntegerField(default=0)
     category = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='news', null=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def get_absolute_url(self):
         return reverse('single', kwargs={'news_slug': self.slug})
 

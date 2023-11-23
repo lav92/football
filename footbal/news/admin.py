@@ -7,7 +7,7 @@ from news.models import News, Category
 @register(News)
 class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ['pk', 'title', 'created_at', 'category', 'views']
+    list_display = ['pk', 'title', 'created_at', 'category', 'views', 'photo']
     list_display_links = ['pk', 'title']
 
 
