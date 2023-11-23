@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.views.generic import ListView
 
-from news.models import News
+from news.models import News, Category
 
 
 class HomePage(ListView):
@@ -12,5 +12,12 @@ class HomePage(ListView):
         'title': 'Main Page',
     }
 
-def single_news(request, news_slug):
-    return HttpResponse('single post')
+
+class SingleCategory(ListView):
+    model = Category
+    template_name = 'news/index.html'
+    context_object_name = 'news'
+
+
+def single_news(request):
+    return HttpResponse('flwfjwef')
