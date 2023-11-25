@@ -10,6 +10,7 @@ class News(models.Model):
     photo = models.ImageField(blank=True, upload_to='photos/%Y/%m/%d/')
     views = models.IntegerField(default=0)
     category = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='news', null=True)
+    tag = models.ManyToManyField('Tag', blank=True, related_name='tags')
 
     class Meta:
         ordering = ['-created_at']
@@ -32,3 +33,18 @@ class Category(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=250, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('tag', kwargs={'tag_slug': self.slug})
+
+    class Meta:
+        ordering = ['name']
+

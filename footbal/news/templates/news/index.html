@@ -19,43 +19,37 @@
                         <div class="row">
 
                             {% for item in news %}
-                            <div class="col-lg-12">
-                                <div class="blog-post">
-                                    <div class="blog-thumb">
-                                        <img src="{{ item.photo.url }}" alt="">
-                                    </div>
-                                    <div class="down-content">
-                                        <span><a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
-                                        <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
-                                        <ul class="post-info">
-                                            <li><a href="#">{ Author }</a></li>
-                                            <li><a href="#">{{ item.created_at|date:'d M, Y H:i' }}</a></li>
-                                            <li><a href="#">views: {{ item.views }}</a></li>
-                                        </ul>
-                                        <p>
-                                            {{ item.content|truncatewords:40 }}
-                                        </p>
-                                        <div class="post-options">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <ul class="post-tags">
-                                                        <li><i class="fa fa-tags"></i></li>
-                                                        <li><a href="#">{ TAGS }</a>,</li>
-                                                        <li><a href="#">{ TAGS }</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-6">
-                                                    <ul class="post-share">
-                                                        <li><i class="fa fa-share-alt"></i></li>
-                                                        <li><a href="#">Facebook</a>,</li>
-                                                        <li><a href="#"> Twitter</a></li>
-                                                    </ul>
+                                <div class="col-lg-12">
+                                    <div class="blog-post">
+                                        <div class="blog-thumb">
+                                            <img src="{{ item.photo.url }}" alt="">
+                                        </div>
+                                        <div class="down-content">
+                                            <span><a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
+                                            <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
+                                            <ul class="post-info">
+                                                <li><a href="#">{ Author }</a></li>
+                                                <li><a href="#">{{ item.created_at|date:'d M, Y H:i' }}</a></li>
+                                                <li><a href="#">views: {{ item.views }}</a></li>
+                                            </ul>
+                                            <p>
+                                                {{ item.content|truncatewords:40 }}
+                                            </p>
+                                            <div class="post-options">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <ul class="post-tags">
+                                                            <li><i class="fa fa-tags"></i></li>
+                                                            {% for tag in item.tag.all %}
+                                                                <li><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {% endfor %}
 
                         </div>

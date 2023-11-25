@@ -75,8 +75,9 @@
                                                 <div class="col-6">
                                                     <ul class="post-tags">
                                                         <li><i class="fa fa-tags"></i></li>
-                                                        <li><a href="#">{TAGS}</a>,</li>
-                                                        <li><a href="#">{TAGS}</a></li>
+                                                        {% for tag in news.tag.all %}
+                                                            <li><a href="#">{{ tag.name }}</a></li>
+                                                        {% endfor %}
                                                     </ul>
                                                 </div>
                                             </div>
