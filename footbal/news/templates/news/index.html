@@ -41,7 +41,9 @@
                                                         <ul class="post-tags">
                                                             <li><i class="fa fa-tags"></i></li>
                                                             {% for tag in item.tag.all %}
-                                                                <li><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></li>
+                                                                <li>
+                                                                    <a href="{{ tag.get_absolute_url }}">#{{ tag.name }}</a>
+                                                                </li>
                                                             {% endfor %}
                                                         </ul>
                                                     </div>
@@ -130,4 +132,39 @@
             </div>
         </div>
     </section>
+
+    {% if page_obj.has_other_pages %}
+        <div class="col-lg-8">
+            <ul class="page-numbers">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+                {% endif %}
+
+                {% for p in page_obj.paginator.page_range %}
+                    {% if p <= page_obj.number|add:2 and p >= page_obj.number|add:-2 %}
+                        {% if p == page_obj.number %}
+                            <li class="active"><a href="?page={{ p }}">{{ p }}</a></li>
+                        {% else %}
+                            <li><a href="?page={{ p }}">{{ p }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+                {% endif %}
+
+
+
+
+
+                    {#                            <li><a href="#">1</a></li>#}
+                    {#                            <li class="active"><a href="#">2</a></li>#}
+                    {#                            <li><a href="#">3</a></li>#}
+                    {#                            #}
+                    {#                            <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>#}
+
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}

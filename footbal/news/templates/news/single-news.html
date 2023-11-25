@@ -76,7 +76,7 @@
                                                     <ul class="post-tags">
                                                         <li><i class="fa fa-tags"></i></li>
                                                         {% for tag in news.tag.all %}
-                                                            <li><a href="#">{{ tag.name }}</a></li>
+                                                            <li><a href="{{ tag.get_absolute_url }}">#{{ tag.name }}</a></li>
                                                         {% endfor %}
                                                     </ul>
                                                 </div>
