@@ -25,17 +25,15 @@
                                             <img src="{{ item.photo.url }}" alt="">
                                         </div>
                                         <div class="down-content">
-                                            <span><a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
+                                            <span class="my-span"><a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
                                             <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
-                                            <ul class="post-info">
+                                            <ul class="post-info" style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 25px">
                                                 <li><a href="#">{{ item.author }}</a></li>
                                                 <li><a href="#">{{ item.created_at|date:'d M, Y H:i' }}</a></li>
                                                 <li><a href="#">views: {{ item.views }}</a></li>
                                             </ul>
-                                            <p>
-                                                {{ item.content|truncatewords:40 }}
-                                            </p>
-                                            <div class="post-options">
+                                            {{ item.content|truncatewords:40|safe }}
+                                            <div class="post-options" style="margin-top: 25px; border-top: 1px solid #eee; padding: 25px">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <ul class="post-tags">

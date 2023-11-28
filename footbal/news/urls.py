@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from news.views import HomePage, SingleCategory, SingleNews, SingleTag
+from news.views import HomePage, SingleCategory, SingleNews, SingleTag, AddNews
 
 urlpatterns = [
     path('', HomePage.as_view(), name='main-page'),

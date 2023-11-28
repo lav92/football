@@ -7,8 +7,11 @@ from news.models import News, Category, Tag
 @register(News)
 class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ['pk', 'title', 'created_at', 'category', 'views', 'photo']
+    list_display = ['pk', 'title', 'created_at', 'category', 'views', 'author']
     list_display_links = ['pk', 'title']
+    readonly_fields = ['views']
+    list_per_page = 10
+    list_filter = ['category', 'author']
 
 
 @register(Category)

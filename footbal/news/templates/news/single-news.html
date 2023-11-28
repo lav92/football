@@ -65,13 +65,13 @@
                                     <div class="down-content">
                                         <span>{{ news.category }}</span>
                                         <h4>{{ news.title }}</h4>
-                                        <ul class="post-info">
+                                        <ul class="post-info" style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 25px">
                                             <li><a href="#">{{ news.author }}</a></li>
                                             <li><a href="#">{{ news.created_at|date:'d M, Y H:i' }}</a></li>
                                             <li><a href="#">views: {{ news.views }}</a></li>
                                         </ul>
-                                        <p>{{ news.content }}</p>
-                                        <div class="post-options">
+                                        <div>{{ news.content|safe }}</div>
+                                        <div class="post-options" style="margin-top: 25px; border-top: 1px solid #eee; padding: 25px">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <ul class="post-tags">

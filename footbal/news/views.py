@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import F
 
 from news.models import News, Category, Tag
+from news.forms import AddNewsForm
 
 
 class HomePage(ListView):
@@ -60,3 +61,16 @@ class SingleTag(ListView):
 
     def get_queryset(self):
         return News.objects.filter(tag__slug=self.kwargs['tag_slug'])
+
+
+class AddNews(CreateView):
+    form_class = AddNewsForm
+    template_name = 'news/addpage.html'
+    extra_context = {
+        'title': 'Create News',
+    }
+
+    def form_valid(self, form):
+        news = form.save(commit=False)
+        news.author = self.request.user
+        return super().form_valid(form)

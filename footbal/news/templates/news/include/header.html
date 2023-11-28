@@ -24,14 +24,23 @@
                     </li>
 
                     {% if user.is_authenticated %}
-                        <li><div class="main-button" style="margin-right: 10px">
-                            <a rel="nofollow" href="#" target="_parent">{{ user.username }}</a>
-                        </div></li>
                         <li>
-                        <div class="main-button" style="margin-right: 10px">
-                            <a rel="nofollow" href="{% url 'users:logout' %}" target="_parent">Log Out</a>
-                        </div>
-                    </li>
+                            <div class="main-button" style="margin-right: 10px">
+                                <a rel="nofollow" href="#" target="_parent">{{ user.username }}</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="main-button" style="margin-right: 10px">
+                                <a rel="nofollow" href="{% url 'users:logout' %}" target="_parent">Log Out</a>
+                            </div>
+                        </li>
+                        {% if user.is_staff %}
+                            <li>
+                                <div class="main-button" style="margin-right: 10px">
+                                    <a rel="nofollow" href="/admin" target="_parent">Admin Panel</a>
+                                </div>
+                            </li>
+                        {% endif %}
                     {% else %}
                         <li>
                             <div class="main-button" style="margin-right: 10px">
