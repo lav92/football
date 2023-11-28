@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+    <link href="{% static 'login/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        {#        <form class="register-form">#}
+        {#            <input type="text" placeholder="name"/>#}
+        {#            <input type="password" placeholder="password"/>#}
+        {#            <input type="text" placeholder="email address"/>#}
+        {#            <button>create</button>#}
+        {#            <p class="message">Already registered? <a href="#">Sign In</a></p>#}
+        {#        </form>#}
+        <form class="login-form" method="post">
+            {% csrf_token %}
+{#            <div class="form-error"></div>#}
+            <p class="message">{{ form.non_field_errors }}</p>
+            {% for f in form %}
+                {{ f }}
+                <div>{{ f.errors }}</div>
+            {% endfor %}
+            <button type="submit">login</button>
+            <p class="message">Not registered? <a href="{% url 'users:logup' %}">Create an account</a></p>
+            <p class="message"><a href="{% url 'main-page' %}">Return to home page</a></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

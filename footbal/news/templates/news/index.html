@@ -28,7 +28,7 @@
                                             <span><a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
                                             <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
                                             <ul class="post-info">
-                                                <li><a href="#">{ Author }</a></li>
+                                                <li><a href="#">{{ item.author }}</a></li>
                                                 <li><a href="#">{{ item.created_at|date:'d M, Y H:i' }}</a></li>
                                                 <li><a href="#">views: {{ item.views }}</a></li>
                                             </ul>

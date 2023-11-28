@@ -22,12 +22,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">About us</a>
                     </li>
-                    <li><div class="main-button" style="margin-right: 10px">
-                    <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" target="_parent">Sign</a>
-                  </div></li>
-                    <li><div class="main-button">
-                    <a rel="nofollow" href="https://templatemo.com/tm-551-stand-blog" target="_parent">Registration</a>
-                  </div></li>
+
+                    {% if user.is_authenticated %}
+                        <li><div class="main-button" style="margin-right: 10px">
+                            <a rel="nofollow" href="#" target="_parent">{{ user.username }}</a>
+                        </div></li>
+                        <li>
+                        <div class="main-button" style="margin-right: 10px">
+                            <a rel="nofollow" href="{% url 'users:logout' %}" target="_parent">Log Out</a>
+                        </div>
+                    </li>
+                    {% else %}
+                        <li>
+                            <div class="main-button" style="margin-right: 10px">
+                                <a rel="nofollow" href="{% url 'users:login' %}" target="_parent">Log In</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="main-button">
+                                <a rel="nofollow" href="{% url 'users:logup' %}" target="_parent">Registration</a>
+                            </div>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

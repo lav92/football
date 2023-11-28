@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 
 class News(models.Model):
@@ -11,6 +12,7 @@ class News(models.Model):
     views = models.IntegerField(default=0)
     category = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='news', null=True)
     tag = models.ManyToManyField('Tag', blank=True, related_name='tags')
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, related_name='author_news')
 
     class Meta:
         ordering = ['-created_at']
