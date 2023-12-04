@@ -1,16 +1,49 @@
-# This is a sample Python script.
+import requests
+from datetime import *
+import calendar
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# uri_table = 'https://api.football-data.org/v4/competitions/PL/standings'
+# headers = {'X-Auth-Token': '58e6cb6d63de4b5fa5e98defa3b17d3d'}
+#
+# response_table = requests.get(uri_table, headers=headers)
+# print(type(response_table.json()))
+# teams_dict = list()
+#
+#
+# def get_table():
+#     result = list()
+#     for k, v in response_table.json().items():
+#         if k == 'standings':
+#             for key, value in v[0].items():
+#                 if key == 'table':
+#                     for pos in value:
+#                         result.append(pos)
+#     return result
+#
+#
+# for item in get_table():
+#     print(item)
 
+# print('---------')
+# uri_matches = 'https://api.football-data.org/v4/competitions/PL/matches?matchday=14'
+# response_matchday = requests.get(uri_matches, headers=headers)
+# for k, v in response_matchday.json().items():
+#     print(k, v)
+#     if isinstance(v, list):
+#         for num, item in enumerate(v):
+#             print(num, item)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# uri_scores = 'https://api.football-data.org/v4/competitions/PL/standings'
+uri_scores = 'https://api.football-data.org/v4/competitions/PL/matches'
+headers = {'X-Auth-Token': '58e6cb6d63de4b5fa5e98defa3b17d3d'}
 
+response = requests.get(uri_scores, headers=headers)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+matches_played = response.json().get('resultSet').get('played')
+print(matches_played, type(matches_played))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# start = datetime(2023, 12, 4)
+# finish = datetime(2023, 11, 7)
+# print(datetime.now())
+# print(datetime.now() > start)
+

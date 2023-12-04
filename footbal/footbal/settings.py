@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'news.apps.NewsConfig',
     'users.apps.UsersConfig',
+    'stats.apps.StatsConfig',
 
     'django_ckeditor_5',
     'debug_toolbar',
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'footbal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -22,8 +22,11 @@ from footbal import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', include('news.urls')),
     path('users/', include('users.urls', namespace='users')),
+    path('stats/', include('stats.urls', namespace='stats')),
+
     path("__debug__/", include("debug_toolbar.urls")),
 ]
 

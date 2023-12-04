@@ -6,6 +6,10 @@ from news.models import News, Category, Tag
 from news.forms import AddNewsForm
 
 
+def video(request):
+    return render(request, 'news/video.html')
+
+
 class HomePage(ListView):
     model = News
     template_name = 'news/index.html'
