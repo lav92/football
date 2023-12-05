@@ -1,3 +1,6 @@
+{% load cache %}
+{% cache 120 catss %}
+
 <div class="main-banner header-text">
     <div class="container-fluid">
         <div class="owl-banner owl-carousel">
@@ -19,3 +22,4 @@
         </div>
     </div>
 </div>
+{% endcache %}

@@ -5,6 +5,8 @@ from django.db.models import F
 from news.models import News, Category, Tag
 from news.forms import AddNewsForm
 
+from django.core.cache import cache
+
 
 def video(request):
     return render(request, 'news/video.html')
@@ -20,7 +22,11 @@ class HomePage(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return News.objects.select_related('category', 'author').prefetch_related('tag').all()
+        result = cache.get('news_set')
+        if not result:
+            result = News.objects.select_related('category', 'author').prefetch_related('tag').all()
+            cache.set('news_set', result, 30)
+        return result
 
 
 class SingleCategory(ListView):
