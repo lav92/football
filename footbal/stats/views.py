@@ -12,7 +12,7 @@ class Home(ListView):
     context_object_name = 'table_teams'
     extra_context = {
         'title': 'Stats',
-        'table_scorers': TableScorers.objects.all(),
+        'table_scorers': TableScorers.objects.select_related('players').all(),
     }
 
     def get_queryset(self):
@@ -21,7 +21,8 @@ class Home(ListView):
         response = requests.get(link, headers=headers)
 
         matches_played = response.json().get('resultSet').get('played')
+        print(matches_played)
 
         if matches_played % 10 != 0:
             management.call_command('get_table')
-        return Table.objects.all()
+        return Table.objects.select_related('team').all()

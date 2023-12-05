@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.inclusion_tag('news/include/category_list.html')
 def show_categories():
-    cats = Category.objects.all()
+    cats = Category.objects.select_related().all()
     return {'cats': cats}
 
 

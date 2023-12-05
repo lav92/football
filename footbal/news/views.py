@@ -19,6 +19,9 @@ class HomePage(ListView):
     }
     paginate_by = 3
 
+    def get_queryset(self):
+        return News.objects.select_related('category', 'author').prefetch_related('tag').all()
+
 
 class SingleCategory(ListView):
     template_name = 'news/index.html'
@@ -32,24 +35,30 @@ class SingleCategory(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(category__slug=self.kwargs['cat_slug']).order_by('-created_at')
+        return News.objects.select_related('category', 'author').prefetch_related('tag')\
+            .filter(category__slug=self.kwargs['cat_slug']).order_by('-created_at')
 
 
 class SingleNews(DetailView):
+    model = News
     template_name = 'news/single-news.html'
-    context_object_name = 'news'
     slug_url_kwarg = 'news_slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = News.objects.get(slug=self.kwargs[self.slug_url_kwarg])
+        news = News.objects.select_related('author').get(slug=self.kwargs[self.slug_url_kwarg])
+        context['title'] = news.title
+        context['news'] = news
         self.object.views = F('views') + 1
         self.object.save()
         self.object.refresh_from_db()
         return context
 
-    def get_object(self, queryset=None):
-        return get_object_or_404(News, slug=self.kwargs[self.slug_url_kwarg])
+    # def get_object(self, queryset=None):
+    #     return get_object_or_404(News, slug=self.kwargs[self.slug_url_kwarg])
+
+    # def get_queryset(self):
+    #     return News.objects.get(slug=self.kwargs[self.slug_url_kwarg])
 
 
 class SingleTag(ListView):
@@ -64,7 +73,8 @@ class SingleTag(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(tag__slug=self.kwargs['tag_slug'])
+        return News.objects.select_related('author', 'category').prefetch_related('tag')\
+            .filter(tag__slug=self.kwargs['tag_slug'])
 
 
 class AddNews(CreateView):
