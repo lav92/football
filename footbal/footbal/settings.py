@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'stats.apps.StatsConfig',
 
+    'rest_framework',
     'django_ckeditor_5',
     'debug_toolbar',
 ]

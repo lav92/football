@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import F
+from rest_framework import generics
 
 from news.models import News, Category, Tag
 from news.forms import AddNewsForm
+from news.serializer import NewsSerializer
 
 from django.core.cache import cache
 
@@ -94,3 +96,8 @@ class AddNews(CreateView):
         news = form.save(commit=False)
         news.author = self.request.user
         return super().form_valid(form)
+
+
+class NewsAPI(generics.ListAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
