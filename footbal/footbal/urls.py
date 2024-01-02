@@ -16,12 +16,16 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.template.defaulttags import url
+from django.urls import path, include, re_path
 
 from footbal import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/drf-auth/', include('rest_framework.urls')),
+    path('api/v1/auth/', include('djoser.urls')),  # new
+    path(r'api/v1/auth/', include('djoser.urls.authtoken')),
 
     path('', include('news.urls')),
     path('users/', include('users.urls', namespace='users')),

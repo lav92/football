@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'stats.apps.StatsConfig',
 
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
     'django_ckeditor_5',
     'debug_toolbar',
 ]
@@ -236,4 +238,12 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379",
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
 }
