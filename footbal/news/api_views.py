@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from news.models import News, Category
 from news.serializer import NewsSerializer, CategorySerializer
+from news.api_permissions import CreatePermission
 
 
 class AllNewsAPI(generics.ListAPIView):
@@ -27,8 +28,10 @@ class NewsByCategory(generics.ListAPIView):
 
 class CreateNewsAPI(generics.CreateAPIView):
     serializer_class = NewsSerializer
-    queryset = News.objects.all()
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (CreatePermission, )
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 class GetUpdateDeleteNewsAPI(generics.RetrieveUpdateDestroyAPIView):
