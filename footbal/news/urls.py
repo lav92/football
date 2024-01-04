@@ -14,7 +14,7 @@ urlpatterns = [
     path('api/v1/all_news/', AllNewsAPI.as_view()),
     path('api/v1/all_category/', AllCategoryAPI.as_view()),
     path('api/v1/news_by_category/<int:cat_pk>/', NewsByCategory.as_view()),
-
+    # api urls for staff users
     path('api/v1/create_news/', CreateNewsAPI.as_view()),
     path('api/v1/get_update_delete_news/<int:pk>/', GetUpdateDeleteNewsAPI.as_view()),
 ]

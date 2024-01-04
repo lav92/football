@@ -23,18 +23,25 @@
                                 <div class="col-lg-12">
                                     <div class="blog-post">
                                         <div class="blog-thumb">
-                                            <img src="{{ item.photo.url }}" alt="">
+                                            {% if item.photo %}
+                                                <img src="{{ item.photo.url }}" alt="">
+                                            {% else %}
+                                                <img src="media/photos/default_img.jpeg" alt="">
+                                            {% endif %}
                                         </div>
                                         <div class="down-content">
-                                            <span class="my-span"><a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
+                                            <span class="my-span"><a
+                                                    href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></span>
                                             <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
-                                            <ul class="post-info" style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 25px">
+                                            <ul class="post-info"
+                                                style="margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 25px">
                                                 <li><a href="#">{{ item.author }}</a></li>
                                                 <li><a href="#">{{ item.created_at|date:'d M, Y H:i' }}</a></li>
                                                 <li><a href="#">views: {{ item.views }}</a></li>
                                             </ul>
                                             {{ item.content|truncatewords:40|safe }}
-                                            <div class="post-options" style="margin-top: 25px; border-top: 1px solid #eee; padding: 25px">
+                                            <div class="post-options"
+                                                 style="margin-top: 25px; border-top: 1px solid #eee; padding: 25px">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <ul class="post-tags">
@@ -73,7 +80,8 @@
         <div class="col-lg-8">
             <ul class="page-numbers">
                 {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a>
+                    </li>
                 {% endif %}
 
                 {% for p in page_obj.paginator.page_range %}
@@ -87,18 +95,19 @@
                 {% endfor %}
 
                 {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+                    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-double-right"></i></a>
+                    </li>
                 {% endif %}
 
 
 
 
 
-                    {#                            <li><a href="#">1</a></li>#}
-                    {#                            <li class="active"><a href="#">2</a></li>#}
-                    {#                            <li><a href="#">3</a></li>#}
-                    {#                            #}
-                    {#                            <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>#}
+                {#                            <li><a href="#">1</a></li>#}
+                {#                            <li class="active"><a href="#">2</a></li>#}
+                {#                            <li><a href="#">3</a></li>#}
+                {#                            #}
+                {#                            <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>#}
 
             </ul>
         </div>

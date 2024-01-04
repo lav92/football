@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from news.models import News, Category
 from news.serializer import NewsSerializer, CategorySerializer
-from news.api_permissions import CreatePermission
+from news.api_permissions import CreatePermission, AuthorOrAdminPermission
 
 
 class AllNewsAPI(generics.ListAPIView):
@@ -36,6 +36,6 @@ class CreateNewsAPI(generics.CreateAPIView):
 
 class GetUpdateDeleteNewsAPI(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = NewsSerializer
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, AuthorOrAdminPermission, )
     queryset = News.objects.all()
 

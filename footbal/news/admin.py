@@ -9,9 +9,13 @@ class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     list_display = ['pk', 'title', 'created_at', 'category', 'views', 'author']
     list_display_links = ['pk', 'title']
-    readonly_fields = ['views']
+    readonly_fields = ['views', 'author']
     list_per_page = 10
     list_filter = ['category', 'author']
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
 
 
 @register(Category)
