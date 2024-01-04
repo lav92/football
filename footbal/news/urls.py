@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.views.decorators.cache import cache_page
 
 
-from news.views import HomePage, SingleCategory, SingleNews, SingleTag
+from news.views import HomePage, SingleCategory, SingleNews, SingleTag, show_api_description
 from news.api_views import AllNewsAPI, AllCategoryAPI, NewsByCategory, GetUpdateDeleteNewsAPI, CreateNewsAPI
 
 urlpatterns = [
@@ -17,4 +17,6 @@ urlpatterns = [
     # api urls for staff users
     path('api/v1/create_news/', CreateNewsAPI.as_view()),
     path('api/v1/get_update_delete_news/<int:pk>/', GetUpdateDeleteNewsAPI.as_view()),
+    # api description page
+    path('api_description/', show_api_description, name='api_description'),
 ]

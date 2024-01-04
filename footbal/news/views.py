@@ -14,7 +14,7 @@ from django.core.cache import cache
 
 
 def video(request):
-    return render(request, 'news/video.html')
+    return render(request, 'news/our_api.html')
 
 
 class HomePage(ListView):
@@ -88,14 +88,5 @@ class SingleTag(ListView):
             .filter(tag__slug=self.kwargs['tag_slug'])
 
 
-class AddNews(CreateView):
-    form_class = AddNewsForm
-    template_name = 'news/addpage.html'
-    extra_context = {
-        'title': 'Create News',
-    }
-
-    def form_valid(self, form):
-        news = form.save(commit=False)
-        news.author = self.request.user
-        return super().form_valid(form)
+def show_api_description(request):
+    return render(request, 'news/our_api.html')
