@@ -11,16 +11,8 @@
 <body>
 <div class="login-page">
     <div class="form">
-        {#        <form class="register-form">#}
-        {#            <input type="text" placeholder="name"/>#}
-        {#            <input type="password" placeholder="password"/>#}
-        {#            <input type="text" placeholder="email address"/>#}
-        {#            <button>create</button>#}
-        {#            <p class="message">Already registered? <a href="#">Sign In</a></p>#}
-        {#        </form>#}
         <form class="login-form" method="post">
             {% csrf_token %}
-{#            <div class="form-error"></div>#}
             <p class="message">{{ form.non_field_errors }}</p>
             {% for f in form %}
                 {{ f }}

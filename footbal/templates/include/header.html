@@ -26,7 +26,7 @@
                     {% if user.is_authenticated %}
                         <li>
                             <div class="main-button" style="margin-right: 10px">
-                                <a rel="nofollow" href="#" target="_parent">{{ user.username }}</a>
+                                <a rel="nofollow" href="{% url 'users:profile' %}" target="_parent">{{ user.username }}</a>
                             </div>
                         </li>
                         <li>
