@@ -17,7 +17,7 @@
                         <a class="nav-link" href="{% url 'stats:home' %}">football stats</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Store</a>
+                        <a class="nav-link" href="{% url 'shop:home' %}">Store</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'api_description' %}">Our API</a>
@@ -26,12 +26,18 @@
                     {% if user.is_authenticated %}
                         <li>
                             <div class="main-button" style="margin-right: 10px">
-                                <a rel="nofollow" href="{% url 'users:profile' %}" target="_parent">{{ user.username }}</a>
+                                <a rel="nofollow" href="{% url 'users:profile' %}"
+                                   target="_parent">{{ user.username }}</a>
                             </div>
                         </li>
                         <li>
                             <div class="main-button" style="margin-right: 10px">
                                 <a rel="nofollow" href="{% url 'users:logout' %}" target="_parent">Log Out</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="main-button" style="margin-right: 10px">
+                                <a rel="nofollow" href="{% url 'shop:show_cart' %}" target="_parent">Корзина</a>
                             </div>
                         </li>
                         {% if user.is_staff %}
@@ -50,6 +56,11 @@
                         <li>
                             <div class="main-button">
                                 <a rel="nofollow" href="{% url 'users:logup' %}" target="_parent">Registration</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="main-button" style="margin-left: 10px">
+                                <a rel="nofollow" href="#" target="_parent">Корзина</a>
                             </div>
                         </li>
                     {% endif %}

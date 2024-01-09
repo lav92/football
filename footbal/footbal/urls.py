@@ -16,8 +16,7 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.template.defaulttags import url
-from django.urls import path, include, re_path
+from django.urls import path, include
 
 from footbal import settings
 
@@ -30,6 +29,7 @@ urlpatterns = [
     path('', include('news.urls')),
     path('users/', include('users.urls', namespace='users')),
     path('stats/', include('stats.urls', namespace='stats')),
+    path('shop/', include('shop.urls', namespace='shop')),
 
     path("__debug__/", include("debug_toolbar.urls")),
 ]

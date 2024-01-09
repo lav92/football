@@ -13,6 +13,9 @@
     <div class="content">
         <header class="header">
             <h1 id="title" class="h1">Edit your profile</h1>
+            <form action="{% url 'shop:order_history' %}" target="_blank">
+                <button class="button">Посмотреть историю заказов</button>
+            </form>
             <h2 class="h1">Your Token</h2>
             <p>{{ token }}</p>
             <form action="{% url 'main-page' %}" target="_blank">
@@ -22,7 +25,6 @@
         <main>
             <form action="" id="survey-form" method="post">
                 <div>
-
                     {% csrf_token %}
                     <p class="message">{{ form.non_field_errors }}</p>
                     <ul class="ul">

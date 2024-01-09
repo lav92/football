@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'users.apps.UsersConfig',
     'stats.apps.StatsConfig',
+    'shop.apps.ShopConfig',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -247,3 +248,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+CART_SESSION_ID = 'cart'
+

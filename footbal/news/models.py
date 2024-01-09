@@ -36,6 +36,8 @@ class Category(models.Model):
     description = models.CharField(max_length=100, blank=True)
     photo = models.ImageField(blank=True, upload_to='category/')
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name = "Категория"
         verbose_name_plural = 'Категории'
